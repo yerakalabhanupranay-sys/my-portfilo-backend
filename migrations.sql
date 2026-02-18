@@ -45,5 +45,20 @@ CREATE TABLE IF NOT EXISTS contacts (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Page Views Table
+CREATE TABLE IF NOT EXISTS page_views (
+    id SERIAL PRIMARY KEY,
+    view_date DATE UNIQUE DEFAULT CURRENT_DATE,
+    count INTEGER DEFAULT 0
+);
+
+-- Activities Table
+CREATE TABLE IF NOT EXISTS activities (
+    id SERIAL PRIMARY KEY,
+    action TEXT NOT NULL,
+    icon TEXT, -- Lucide icon name
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Initial Profile Seed (Optional)
 -- INSERT INTO profile (name, headline, bio) VALUES ('Your Name', 'Full Stack Developer', 'I build awesome things.');

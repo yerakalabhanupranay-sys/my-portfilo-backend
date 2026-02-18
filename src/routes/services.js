@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
 const auth = require('../middleware/auth');
+const logActivity = require('../utils/activityLogger');
 
 // GET /api/services
 router.get('/', async (req, res) => {
@@ -28,6 +29,7 @@ router.put('/', auth, async (req, res) => {
             );
         }
         await db.query('COMMIT');
+        await logActivity('Updated services', 'Settings');
         res.json({ message: 'Services updated' });
     } catch (err) {
         await db.query('ROLLBACK');
